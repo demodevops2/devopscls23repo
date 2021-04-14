@@ -6,4 +6,4 @@ date
 echo "check root filesystem space"
 df -h
 
-#echo "add some changes by dev2"
+echo "Test cloning"
