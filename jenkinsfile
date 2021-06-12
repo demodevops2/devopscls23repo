@@ -13,7 +13,7 @@ pipeline {
          }
       }
       
-      stage('deploy war file') {
+      stage('finall deployment stage') {
          
          steps {
             
