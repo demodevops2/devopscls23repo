@@ -1,0 +1,28 @@
+pipeline {
+    agent any 
+    stages{
+      stage('Git checkout') {
+         steps {
+           git branch: 'main', credentialsId: 'github-cred', url: 'https://github.com/demodevops2/devopscls25repo.git'
+         }
+      }
+      
+      stage('mvn build') {
+         steps {
+           sh 'mvn clean package'
+         }
+      }
+      
+      stage('deploy war file') {
+         
+         steps {
+            
+               sshagent(['tomcat-ec2-id']) {
+               sh 'scp -o StrictHostKeyChecking=no target/*.war ubuntu@172.31.43.104:/var/lib/tomcat8/webapps'
+         }
+         }
+      }
+
+}
+
+}
